@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+}
+
+.container {
+  max-width: 930px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
+}
+
+.form-group .react-datepicker-wrapper {
+  width: 100%;
+}
