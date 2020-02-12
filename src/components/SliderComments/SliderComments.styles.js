@@ -72,4 +72,8 @@ export const SlideContent = styled.div`
     font-size: 11px;
     color: lightgray;
   }
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0 15px;
+  }
 `;

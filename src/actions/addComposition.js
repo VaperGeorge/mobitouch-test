@@ -24,17 +24,15 @@ export function addCompositionFailure(error) {
   };
 }
 
-export const addComposititon = composition => {
-  return dispatch => {
-    dispatch(addCompositionLoading(true));
+export const addComposititon = composition => dispatch => {
+  dispatch(addCompositionLoading(true));
 
-    return axios
-      .post(`${API_URL}/compositions`, composition)
-      .then(res => {
-        dispatch(addCompositionSuccess(res.data.composition));
-      })
-      .catch(err => {
-        dispatch(addCompositionFailure(err.message));
-      });
-  };
+  return axios
+    .post(`${API_URL}/compositions`, composition)
+    .then(res => {
+      dispatch(addCompositionSuccess(res.data.composition));
+    })
+    .catch(err => {
+      dispatch(addCompositionFailure(err.message));
+    });
 };

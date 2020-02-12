@@ -1,6 +1,6 @@
 import React from "react";
 import { SectionHeader, AddNewComposition } from "./../index";
-import { Section } from "./Compositions.styles";
+import { Section, AddNewButtonWrapper, CompositionList } from "./Compositions.styles";
 import { connect } from 'react-redux';
 import { compositionsFetchData, removeComposition, getCompositionById } from '../../actions/compositions';
 import CompositionItem from "./CompositionItem";
@@ -80,14 +80,14 @@ class CompositionsList extends React.Component {
 
             <SectionHeader title={title} desc={desc} />
 
-            <ul className="compositions">
+            <CompositionList>
               {this.props.items.map((item, idx) => (
                 <CompositionItem item={item} key={idx} deletePost={this.deletePost} editPost={this.editPost} />
               ))}
-            </ul>
-            <div className="button-wrapper">
-              <button className="add-new" onClick={() => this.addNewPost()}>Add new Composition</button>
-            </div>
+            </CompositionList>
+            <AddNewButtonWrapper>
+              <button onClick={() => this.addNewPost()}>Add new Composition</button>
+            </AddNewButtonWrapper>
           </div>
           <AddNewComposition
             isItemEdit={this.state.isItemEdit}

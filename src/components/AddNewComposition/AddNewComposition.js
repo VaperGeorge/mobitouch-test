@@ -5,31 +5,9 @@ import { Field, reduxForm, formValueSelector } from "redux-form";
 import { addComposititon } from "../../actions/addComposition";
 import { compositionsFetchData, editCompositionById, clearCompositionDetails } from "../../actions/compositions";
 import { FormContent } from "./AddNewComposition.styles"
-import { renderTextarea, renderField, renderDatePicker } from "../../form-fields/formFields";
-import isUrl from "is-url";
+import { renderTextarea, renderField, renderDatePicker } from "../../form/formFields";
+import { validate } from './../../form/formValidation'
 import Moment from 'react-moment';
-
-const validate = values => {
-  const errors = {};
-  if (!values.title) {
-    errors.title = "Required";
-  }
-  if (!values.autor) {
-    errors.autor = "Required";
-  }
-  if (!values.youtube_id) {
-    errors.youtube_id = "Required";
-  }
-  if (!values.itunes_url) {
-    errors.itunes_url = "Required";
-  } else if (!isUrl(values.itunes_url)) {
-    errors.itunes_url = "You must enter a valid URL from YouTube";
-  }
-  if (!values.description) {
-    errors.description = "Required";
-  }
-  return errors;
-};
 
 class AddNewComposition extends React.Component {
 
