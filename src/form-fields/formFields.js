@@ -45,7 +45,7 @@ export const renderDatePicker = ({
     <div>
       <DatePicker
         className={`form-control ${touched && error ? "is-invalid" : ""}`}
-        selected={value}
+        selected={!value ? null : new Date(value)}
         onChange={onChange}
         value={!value ? null : new Date(value)}
         name="date"

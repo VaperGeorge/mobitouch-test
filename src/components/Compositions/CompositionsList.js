@@ -12,11 +12,18 @@ class CompositionsList extends React.Component {
 
   state = {
     showModal: false,
-    edditedItem: {}
+    isItemEdit: false
   }
 
   componentDidMount() {
     this.props.fetchCompositions()
+  }
+
+  addNewPost = () => {
+    this.setState(() => ({
+      isItemEdit: false
+    }))
+    this.toggleModalShow();
   }
 
   toggleModalShow() {
@@ -32,12 +39,12 @@ class CompositionsList extends React.Component {
   }
 
   editPost = (id) => {
+    console.log(id)
     this.toggleModalShow();
     this.props.getCompositionById(id).then((item) => {
       this.setState(() => ({
-        edditedItem: item
+        isItemEdit: true
       }))
-      console.log(item)
     })
   }
 
@@ -79,11 +86,11 @@ class CompositionsList extends React.Component {
               ))}
             </ul>
             <div className="button-wrapper">
-              <button className="add-new" onClick={() => this.toggleModalShow()}>Add new Composition</button>
+              <button className="add-new" onClick={() => this.addNewPost()}>Add new Composition</button>
             </div>
           </div>
           <AddNewComposition
-            edditedItem={this.state.edditedItem}
+            isItemEdit={this.state.isItemEdit}
             show={this.state.showModal}
             onHide={() => this.toggleModalShow()} />
         </Section>

@@ -38,9 +38,8 @@ class CompositionItem extends React.Component {
         </div>
         <div className="right-col">
           <YouTube
-            videoId={item.video_id}
+            videoId={item.youtube_id}
             opts={opts}
-          // onReady={this._onReady}
           />
         </div>
       </Item>

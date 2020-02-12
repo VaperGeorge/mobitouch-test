@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
 import { Field, reduxForm, formValueSelector } from "redux-form";
 import { addComposititon } from "../../actions/addComposition";
-import { compositionsFetchData } from "../../actions/compositions";
+import { compositionsFetchData, editCompositionById, clearCompositionDetails } from "../../actions/compositions";
 import { FormContent } from "./AddNewComposition.styles"
 import { renderTextarea, renderField, renderDatePicker } from "../../form-fields/formFields";
 import isUrl from "is-url";
@@ -19,8 +19,6 @@ const validate = values => {
   }
   if (!values.youtube_id) {
     errors.youtube_id = "Required";
-  } else if (!isUrl(values.youtube_id)) {
-    errors.youtube_id = "You must enter a valid URL from iTunes";
   }
   if (!values.itunes_url) {
     errors.itunes_url = "Required";
@@ -45,32 +43,57 @@ class AddNewComposition extends React.Component {
     }))
   }
 
+
+  addNewComposition = (vals) => {
+    this.props.onAddComposition(vals).then(() => {
+
+      this.props.onHide(this.props.show === !this.props.show);
+
+      let wait = setTimeout(() => {
+        clearTimeout(wait);
+        this.props.compositionsFetchData();
+        this.props.destroy("add_new_composition");
+        this.goToStep(1)
+      }, 400)
+    });
+  }
+
+  editComposition = (vals) => {
+    this.props.onEditComposition(vals).then(() => {
+
+      this.props.onHide(this.props.show === !this.props.show);
+
+      let wait = setTimeout(() => {
+        clearTimeout(wait);
+        this.props.compositionsFetchData();
+        this.props.destroy("add_new_composition");
+        this.goToStep(1)
+      }, 400)
+    });
+  }
+
   submitForm = vals => {
-    this.goToStep(2);
+    if (this.state.step === 1) {
+      this.goToStep(2);
+      return;
+    }
 
-    if (this.state.step === 2) {
-      this.props.onAddComposition(vals).then(() => {
-        this.props.onHide(this.props.show === !this.props.show);
-
-        let wait = setTimeout(() => {
-          clearTimeout(wait);
-          this.props.compositionsFetchData();
-          this.props.destroy("add_new_composition");
-          this.goToStep(1)
-        }, 400)
-      });
+    if (this.state.step === 2 && this.props.isItemEdit) {
+      this.editComposition(vals);
+    } else {
+      this.addNewComposition(vals);
     }
   };
 
   render() {
-    const { onHide, show, handleSubmit, pristine, submitting, formValues } = this.props;
-
+    const { onHide, show, handleSubmit, pristine, submitting, formValues, clearCompositionDetails, dispatch } = this.props;
+    console.log(this.props);
     return (
       <Modal
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={show}
-        onHide={() => onHide(show === !show)}
+        onHide={() => { onHide(show === !show); dispatch(clearCompositionDetails()) }}
       >
         <Modal.Header closeButton>
           <Modal.Title>Add new composition</Modal.Title>
@@ -118,6 +141,7 @@ class AddNewComposition extends React.Component {
                     variant="primary"
                     disabled={submitting || pristine}
                     type="submit"
+                  // onClick={() => this.goToStep(2)}
                   >
                     Go next
                 </Button>
@@ -132,7 +156,7 @@ class AddNewComposition extends React.Component {
                     </span>
                     <span className="author">{formValues.author}</span>
                     <h3 className="title">{formValues.title}</h3>
-                    <p><span>YouTube URL: </span> {formValues.youtube_id}</p>
+                    <p><span>YouTube ID: </span> {formValues.youtube_id}</p>
                     <p><span>iTunes URL: </span> {formValues.itunes_url}</p>
                     <p><span>Description: </span> {formValues.description}</p>
                   </FormContent>
@@ -162,45 +186,40 @@ class AddNewComposition extends React.Component {
   }
 }
 
+
+const selector = formValueSelector('add_new_composition')
+
 const mapStateToProps = state => {
+  const { date, title, author, youtube_id, itunes_url, description } = selector(state, 'date', 'title', 'author', 'youtube_id', 'itunes_url', 'description')
   return {
-    edditingComposition : state.getPostById.compositionDetails,
-    composition: state.addNewComposition.compositions,
-    isLoading: state.addNewComposition.isLoading,
-    hasErrored: state.addNewComposition.hasErrored
+    isLoading: state.compositions.isLoading,
+    hasErrored: state.compositions.hasErrored,
+    initialValues: state.compositions.compositionDetails,
+    formValues: {
+      date,
+      title,
+      author,
+      youtube_id,
+      itunes_url,
+      description
+    }
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    clearCompositionDetails: () => dispatch(clearCompositionDetails()),
+    onEditComposition: id => dispatch(editCompositionById(id)),
     onAddComposition: data => dispatch(addComposititon(data)),
     compositionsFetchData: () => dispatch(compositionsFetchData())
   };
 };
 
-AddNewComposition = reduxForm({
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(reduxForm({
   form: "add_new_composition",
   enableReinitialize: true,
-  validate
-})(AddNewComposition);
-
-// Decorate with connect to read form values
-const selector = formValueSelector('add_new_composition')
-AddNewComposition = connect(
-  state => {
-    const { date, title, author, youtube_id, itunes_url, description } = selector(state, 'date', 'title', 'author', 'youtube_id', 'itunes_url', 'description')
-    return {
-      formValues: {
-        date,
-        title,
-        author,
-        youtube_id,
-        itunes_url,
-        description
-      }
-    }
-  },
-  // { load: this.state.edditingComposition }
-)(AddNewComposition)
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddNewComposition);
+  validate,
+})(AddNewComposition));

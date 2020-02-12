@@ -25,13 +25,7 @@ export function compositions(state = initialState, action) {
         isLoading: false,
         compositions: action.payload
       };
-    default:
-      return state;
-  }
-}
-
-export function addNewComposition(state = initialState, action) {
-  switch (action.type) {
+    // Add composition
     case "ADD_COMPOSITION_STARTED":
       return {
         ...state,
@@ -50,20 +44,26 @@ export function addNewComposition(state = initialState, action) {
         isLoading: false,
         compositions: [action.payload]
       };
-    default:
-      return state;
-  }
-}
-
-export function getPostById(state = initialState, action) {
-  console.log(action)
-  switch (action.type) {
+    // Get post by Id
     case "GET_POST_BY_ID":
       return {
         ...state,
         compositionDetails: action.payload
       };
 
+    // Edit post by Id
+    case "EDIT_POST_BY_ID":
+      return {
+        ...state,
+        compositionDetails: {}
+      };
+
+    // Clear Composition Details
+    case "CLEAR_COMPOSITION_DETAILS":
+      return {
+        ...state,
+        compositionDetails: {}
+      };
     default:
       return state;
   }

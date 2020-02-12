@@ -29,6 +29,19 @@ export function getPostByIdSuccess(post) {
   };
 }
 
+export function editPostByIdSuccess(post) {
+  return {
+    type: "EDIT_POST_BY_ID",
+    payload: post
+  };
+}
+
+export function clearCompositionDetails() {
+  return {
+    type: "CLEAR_COMPOSITION_DETAILS"
+  };
+}
+
 export function compositionsFetchData() {
   return dispatch => {
     dispatch(compositionsIsLoading(true));
@@ -63,12 +76,10 @@ export const removeComposition = id => {
 };
 
 export const getCompositionById = id => {
-  console.log(id);
   return dispatch => {
     return axios
       .get(`${API_URL}/compositions/${id}`)
       .then(response => {
-        console.log(response.data);
         if (response.statusText !== "OK") {
           throw Error("Fucking Error", response.statusText);
         }
@@ -76,6 +87,22 @@ export const getCompositionById = id => {
       })
       .catch(err => {
         console.error(`removeComposition function: ${err}`);
+      });
+  };
+};
+
+export const editCompositionById = item => {
+  return dispatch => {
+    return axios
+      .put(`${API_URL}/compositions/${item.id}`, item)
+      .then(response => {
+        if (response.statusText !== "OK") {
+          throw Error("Fucking Error", response.statusText);
+        }
+        dispatch(editPostByIdSuccess(response.data));
+      })
+      .catch(err => {
+        console.error(`editCompositionById function: ${err}`);
       });
   };
 };
