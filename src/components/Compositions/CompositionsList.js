@@ -39,7 +39,6 @@ class CompositionsList extends React.Component {
   }
 
   editPost = (id) => {
-    console.log(id)
     this.toggleModalShow();
     this.props.getCompositionById(id).then((item) => {
       this.setState(() => ({

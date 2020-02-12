@@ -65,7 +65,6 @@ class AddNewComposition extends React.Component {
 
   render() {
     const { onHide, show, handleSubmit, pristine, submitting, formValues, clearCompositionDetails, dispatch } = this.props;
-    console.log(this.props);
     return (
       <Modal
         aria-labelledby="contained-modal-title-vcenter"
