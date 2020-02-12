@@ -1,3 +1,4 @@
+import Main from "./Main/Main";
 import Header from "./Header/Header";
 import Slider from "./Slider/Slider";
 import Discography from "./Discography/Discography";
@@ -9,6 +10,7 @@ import SliderComments from "./SliderComments/SliderComments";
 import AddNewComposition from "./AddNewComposition/AddNewComposition";
 
 export {
+  Main,
   Header,
   Slider,
   Discography,

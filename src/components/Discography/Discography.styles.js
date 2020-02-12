@@ -4,6 +4,7 @@ export const Section = styled.section`
   width: 100%;
   text-align: center;
   padding-bottom: 350px;
+  padding-top: 150px;
   background: url("images/discography-back.png") bottom no-repeat;
 `;
 

@@ -41,16 +41,22 @@ export const ListItem = styled.li`
   text-transform: uppercase;
   position: relative;
 
-  &.active {
-    &:after {
-      content: "";
-      position: absolute;
-      bottom: 10px;
-      right: 50%;
-      transform: translateX(50%);
-      height: 2px;
-      width: 100%;
-      background: #000;
+  a {
+    color: #212529;
+    text-decoration: none;
+    position: relative;
+
+    &.is-active {
+      &:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        right: 50%;
+        transform: translateX(50%);
+        height: 2px;
+        width: 100%;
+        background: #000;
+      }
     }
   }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { List, ListItem, BurgerButton, HeaderPage } from "./Header.styles";
 
 class Header extends React.Component {
@@ -16,12 +17,31 @@ class Header extends React.Component {
     return (
       <HeaderPage>
         <List className={this.state.mobileMenuOpened ? "opened" : ""}>
-          <ListItem className="active">ABOUT </ListItem>
-          <ListItem>DISCOGRAPHY </ListItem>
-          <ListItem>Concert tours </ListItem>
-          <ListItem>latter compositions </ListItem>
-          <ListItem>new tracks </ListItem>
-          <ListItem>Upcoming Events </ListItem>
+          <ListItem>
+            <NavLink exact to="/" activeClassName="is-active">
+              HOME
+            </NavLink>
+          </ListItem>
+          <ListItem>
+            <NavLink to="/discography" activeClassName="is-active">
+              DISCOGRAPHY
+            </NavLink>
+          </ListItem>
+          <ListItem>
+            <NavLink to="/concert_tours" activeClassName="is-active">
+              Concert tours
+            </NavLink>
+          </ListItem>
+          <ListItem>
+            <NavLink to="/compositions_list" activeClassName="is-active">
+              latter compositions
+            </NavLink>
+          </ListItem>
+          <ListItem>
+            <NavLink to="/slider_comments" activeClassName="is-active">
+              Upcoming Events
+            </NavLink>
+          </ListItem>
           <ListItem>History </ListItem>
           <ListItem>contact</ListItem>
         </List>

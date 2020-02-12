@@ -1,23 +1,12 @@
 import React from "react";
 import "./App.css";
-import {
-  Header,
-  Slider,
-  Discography,
-  ConcertTours,
-  CompositionsList,
-  SliderComments
-} from "./components";
+import { Header, Main } from "./components";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Slider />
-      <Discography />
-      <ConcertTours />
-      <CompositionsList />
-      <SliderComments />
+      <Main />
     </div>
   );
 }

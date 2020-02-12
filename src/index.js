@@ -1,22 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from 'react-router-dom'
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "font-awesome/css/font-awesome.min.css";
 import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 // Version >= 2.4.0
-import 'swiper/css/swiper.css';
+import "swiper/css/swiper.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 const store = configureStore();
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 
