@@ -2,7 +2,7 @@
   "compositions": [
     {
       "id": 1,
-      "title": "Sam Feldt ft. Kimberly Anne - Show Me Love (EDX's Indian Summer Remix)",
+      "title": "TSam Feldt ft. Kimberly Anne - Show Me Love (EDX's Indian Summer Remix)",
       "author": "indian sammer",
       "date": "2015-02-03 00:00:00",
       "youtube_id": "AoHd5ShDvA0",
@@ -15,7 +15,7 @@
     },
     {
       "id": 2,
-      "title": "Sam Feldt - Show Me Love (EDX's Indian Summer Remix)",
+      "title": "TSam Feldt - Show Me Love (EDX's Indian Summer Remix)",
       "author": "indian sammer remix",
       "date": "2015-11-05 12:00:12",
       "description": "Amsterdam's Sam Feldt earned attention in Europe and then worldwide for his melodic house remixes, mixtapes, and collaborations including 2014's 'Bloesem' with De Hofnar and 'Hot Skin' with Kav Verhouzer on... Dutch label Spinnin' Records. After a series of live shows in Europe, which he built over time to contain mostly his own productions, he toured North America for the first time in early 2015. 'Midnight Hearts' with the Him featuring ANG13 followed soon...",
@@ -90,6 +90,14 @@
       "itunes_url": "https://test.com",
       "description": "test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test ",
       "id": 9
+    },
+    {
+      "youtube_id": "iK6u8CbI00I",
+      "title": "Kitchen serial video (1 chapter)",
+      "author": "George",
+      "itunes_url": "https://music.apple.com/ru/album/machine-bitez-2/1496308962?i=1496308970",
+      "description": "Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book. Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book.",
+      "id": 10
     }
   ]
 }
