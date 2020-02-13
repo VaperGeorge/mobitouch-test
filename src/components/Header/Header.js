@@ -2,15 +2,8 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { List, ListItem, BurgerButton, HeaderPage } from "./Header.styles";
 
-function Header() {
+const Header = () => {
   const [mobileMenuOpened, setMobileMenuOpened] = useState(false);
-
-  const toggleMenu = () => {
-    // this.setState(prevState => ({
-    //   mobileMenuOpened: !prevState.mobileMenuOpened
-    // }));
-    setMobileMenuOpened(!mobileMenuOpened);
-  };
 
   return (
     <HeaderPage>
@@ -44,10 +37,10 @@ function Header() {
         <ListItem>contact</ListItem>
       </List>
 
-      <BurgerButton onClick={toggleMenu}>
+      <BurgerButton onClick={() => setMobileMenuOpened(!mobileMenuOpened)}>
         <i className="fa fa-bars"></i>
       </BurgerButton>
     </HeaderPage>
   );
-}
+};
 export default Header;
